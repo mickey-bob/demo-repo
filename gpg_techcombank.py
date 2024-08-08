@@ -82,6 +82,7 @@ if __name__ == "__main__":
   DB_USERNAME = os.environ.get("DB_USERNAME")
   DB_PASSWORD = os.environ.get("DB_PASSWORD")
   DB_DATABASE = os.environ.get("DB_DATABASE")
+  TCB_RECEIVED = os.environ.get("TCB_RECEIVED")
   tcb_conn = PostgresConnector(db_host=DB_HOST, db_name_table=DB_DATABASE, db_username=DB_USERNAME, db_passwd=DB_PASSWORD, db_port=DB_PORT)
   
   
@@ -113,19 +114,19 @@ if __name__ == "__main__":
   else:
     print('gpg was installed')
   
-  
-  # logic for encrypting file - using public key from partner
-  file_zip_db = []
+  # generate a list from tuble result database
   file_db_result = []
   check_var = False
   for x in result_sql_tuple:
     file_db_result.append(x[1])
     
+  # logic for encrypting file - using public key from partner
+  file_zip_db = []
   for x in file_zip_list:
     if x not in file_db_result:
       print(f'file {x} in not in db')
       try:
-        os.popen(f'gpg --output {x}.gpg --encrypt --recipient {os.environ.get("TCB_REVICED")} {x}')
+        os.popen(f'gpg --output {x}.gpg --encrypt --recipient {TCB_RECEIVED} {x}')
         file_zip_db.append(x)
         check_var = True
       except Exception as e:
