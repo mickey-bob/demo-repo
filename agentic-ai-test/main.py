@@ -11,7 +11,7 @@ def main():
     
     # LƯỢT 1: Bạn ra lệnh cho Agent kiểm tra lỗi
     # user_input_1 = "Pod nginx-web-7fd4 của tôi đang bị Crash. Hãy check log và phân tích giúp tôi."
-    user_input_1 = "kiểm tra disk usage trên server: 192.168.10.133"
+    user_input_1 = "What is LangChain?"
     print(f"👤 User: {user_input_1}\n")
     
     # Chạy agent
